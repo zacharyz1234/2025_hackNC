@@ -7,7 +7,7 @@ int main() {
     InitWindow(screenWidth, screenHeight, "Raylib Fullscreen Example");
     SetTargetFPS(60);
 
-
+    setDefaults(); // 0 out all functions
     while (!WindowShouldClose()) {
         windowFunctions();
 

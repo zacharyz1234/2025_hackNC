@@ -1,21 +1,23 @@
 #include "source.c"
 
-
-
-Vector2 updatePlayerPOS(){
-    Vector2 r;
-    if(KEY_LEFT){
-        r.x--;
-    }
-    if(KEY_RIGHT){
-        r.x++;
-    }
-    if(KEY_UP){
-        r.y++;
-    }
-    if(KEY_DOWN){
-        r.y--;
-    }
-    return r;
+void setDefaults(){
+    theUser.x = GetScreenWidth() / 2;
+    theUser.y = GetScreenHeight()/ 2;
 }
+
+void updatePlayerPOS(Vector2 &theUser){
+    if(KEY_A){
+        theUser.x--;
+    }
+    if(KEY_D){
+        theUser.x++;
+    }
+    if(KEY_W){
+        theUser.y++;
+    }
+    if(KEY_D){
+        theUser.y--;
+    }
+}
+
 
