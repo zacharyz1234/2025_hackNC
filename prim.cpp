@@ -2,4 +2,7 @@
 
 
 
+Vector2 updatePlayerPOS(){
+    //player dir here
+}
 
