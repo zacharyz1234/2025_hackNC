@@ -3,8 +3,8 @@
 #pragma once
 
 //game const
-int screenWidth = 800;
-int screenHeight = 600;
+int screenWidth = 960;
+int screenHeight = 540;
 bool fullscreen = false;
 
 const float startUserX = 200;
