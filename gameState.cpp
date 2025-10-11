@@ -44,8 +44,7 @@ void HANDLESTATE(){
                 break;
 
             case GAME:
-                DrawText("PLAYING...", 180, 200, 30, GREEN);
-                DrawText("PRESS [ESC] TO RETURN TO MENU", 80, 300, 20, WHITE);
+                gameRunning();
                 break;
 
             case GAME_END:
