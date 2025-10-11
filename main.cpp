@@ -11,14 +11,10 @@ int main() {
     while (!WindowShouldClose()) {
         windowFunctions();
 
-
-
         //start draw
         BeginDrawing();
 
         HANDLESTATE();
-        DrawText("Press [F] to toggle fullscreen", 40, 40, 20, RAYWHITE);
-        DrawText("Press [ESC] to quit", 40, 70, 20, RAYWHITE);
 
         EndDrawing();
     }

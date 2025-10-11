@@ -3,7 +3,11 @@
 
 
 
+
+
 void windowFunctions(){
+    ClearBackground(BLACK);
+
     if (IsKeyPressed(KEY_F)) {
     fullscreen = !fullscreen;
 
