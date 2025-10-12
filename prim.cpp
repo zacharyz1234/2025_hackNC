@@ -2,6 +2,22 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+
+Texture2D enemyFrames[2];
+//int currentFrame = 0;
+//float frameTimer = 0.0f;
+const float frameSpeed = 0.2f;
+
+void loadEnemyTextures(){
+    enemyFrames[0] = LoadTexture("EnemyFrame1.png");
+    enemyFrames[1] = LoadTexture("EnemyFrame2.png");
+}
+
+void unloadEnemyTextures(){
+    UnloadTexture(enemyFrames[0]);
+    UnloadTexture(enemyFrames[1]);
+}
+
 void setDefaults(){
     theUser.x = GetScreenWidth() / 2;
     theUser.y = GetScreenHeight()/ 2;
@@ -39,14 +55,24 @@ void updatePlayerPOS(Vector2 &theUser){
 }
 
 void drawMonsters() {
+    static int currentFrame = 0;
+    static float frameTimer = 0.0f;
+
+    frameTimer += GetFrameTime();
+    if (frameTimer >= frameSpeed) {
+        frameTimer = 0.0f;
+        currentFrame = (currentFrame + 1) % 2;
+    }
+
     for (room &r : roomVec) {
         if (r.isPlayerIn) {
             for (monster &m : r.monsterNumber) {
                 updateMonsterPOS(m);
-                DrawCircle(m.position.x, m.position.y, 10, RED);
+                DrawTexture(enemyFrames[currentFrame],
+                            m.position.x - enemyFrames[currentFrame].width / 2,
+                            m.position.y - enemyFrames[currentFrame].height / 2,
+                            WHITE);
             }
         }
     }
 }
-
-

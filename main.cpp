@@ -11,6 +11,8 @@ int main() {
     InitWindow(screenWidth, screenHeight, "Raylib Fullscreen Example");
     SetTargetFPS(60);
 
+    loadEnemyTextures();
+
     //Puts the overlay over the game
     Texture2D overlayFrame = LoadTexture("UNC_Boy_Frame.png");
 
@@ -48,6 +50,8 @@ int main() {
     {
         UnloadTexture(frames[i]);
     }
+
+    unloadEnemyTextures();
 
     UnloadTexture(overlayFrame);
 
