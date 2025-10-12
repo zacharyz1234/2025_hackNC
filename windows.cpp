@@ -3,8 +3,6 @@
 
 
 
-
-
 void windowFunctions(){
     ClearBackground(BLACK);
 
