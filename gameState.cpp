@@ -36,9 +36,8 @@ room generateNewRoom(){
 monster generateNewMonster(){
     monster r;
     r.health = currentDif;
-    r.position.x;
-    r.position.y;
-
+    r.position = generateRandomPOS();
+    return r;
 }
 
 void monsterQueue(std::queue<monster> monstersToUpdate){
