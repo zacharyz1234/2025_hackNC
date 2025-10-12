@@ -11,6 +11,9 @@ int main() {
     InitWindow(screenWidth, screenHeight, "Raylib Fullscreen Example");
     SetTargetFPS(60);
 
+    //Puts the overlay over the game
+    Texture2D overlayFrame = LoadTexture("UNC_Boy_Frame.png");
+
     //Load the textures AFTER the window is initialized
     frames[0] = LoadTexture("AdventurerFrame1.png");
     frames[1] = LoadTexture("AdventurerFrame2.png");
@@ -33,6 +36,9 @@ int main() {
 
         HANDLESTATE();
 
+        //Draw overlay last so it stays on top
+        DrawTexture(overlayFrame, 0, 0, WHITE);
+
         EndDrawing();
     }
 
@@ -41,6 +47,8 @@ int main() {
     {
         UnloadTexture(frames[i]);
     }
+
+    UnloadTexture(overlayFrame);
 
     CloseWindow();
     return 0;

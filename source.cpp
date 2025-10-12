@@ -7,8 +7,8 @@
 
 
 //window related
-int screenWidth = 960;
-int screenHeight = 540;
+int screenWidth = 1920;
+int screenHeight = 1080;
 bool fullscreen = false;
 
 
