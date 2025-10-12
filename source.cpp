@@ -11,7 +11,7 @@
 int screenWidth = 1920;
 int screenHeight = 1080;
 bool fullscreen = false;
-int playerHealth = 3; //zak maybe draw hearts for this?
+bool playerHealth = true;
 
 
 //game const
@@ -23,8 +23,8 @@ const float DEFAULTMONSTERSPEED = 1.5;
 
 //changables
 int nextRoomId = 1;
-int currentDif = 1;
-int SpawnMonstersInRoom = 2;
+int currentDif = 3; //add more monst
+int SpawnMonstersInRoom = 3;
 int spawnTorchesInRoom = 5;
 
 

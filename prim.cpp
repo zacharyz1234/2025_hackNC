@@ -45,7 +45,7 @@ void handlePlayerHit() {
     theUser.x = GetScreenWidth() / 2;
     theUser.y = GetScreenHeight() / 2;
 
-    playerHealth--;
+    playerHealth = false;
     if (playerHealth <= 0) {
         state = GAME_END;
     }
@@ -81,9 +81,46 @@ void drawMonsters(std::vector<room> &roomVec, Vector2 playerPos) {
             for (monster &m : r.monsterNumber) {
                 updateMonsterPOS(m);
                 Vector2 monsterPos = { m.position.x, m.position.y };
-DrawTexture(enemyFrames[currentFrame], monsterPos.x - enemyFrames[currentFrame].width/2,
+                DrawTexture(enemyFrames[currentFrame], monsterPos.x - enemyFrames[currentFrame].width/2,
                                     monsterPos.y - enemyFrames[currentFrame].height/2, WHITE);
             }
         }
     }
+}
+
+
+
+
+struct PlayerStats {
+    int health;
+    int enemiesKilled;
+    float timeAlive;
+};
+
+void DrawRetroHUD(const PlayerStats& stats, int screenWidth, int screenHeight) {
+    int boxWidth = 300;
+    int boxHeight = 120;
+    int margin = 20;
+    int boxX = (screenWidth / 2) - (boxWidth * 0.75f);
+    int boxY = screenHeight - boxHeight - margin -30; 
+
+
+//colors border, text backgroud
+    Color bgColor = (Color){ 20, 20, 20, 220 };     
+    Color borderColor = (Color){ 0, 255, 128, 255 }; 
+    Color textColor = (Color){ 0, 255, 128, 255 };   
+
+    DrawRectangle(boxX, boxY, boxWidth, boxHeight, bgColor);
+    DrawRectangleLinesEx((Rectangle){(float)boxX, (float)boxY, (float)boxWidth, (float)boxHeight}, 3, borderColor);
+
+    for (int i = 0; i < boxHeight; i += 4) {
+        DrawLine(boxX, boxY + i, boxX + boxWidth, boxY + i, Fade(borderColor, 0.05f));
+    }
+
+    int fontSize = 20;
+    int padding = 20;
+
+    DrawText(TextFormat("HP: %03d", stats.health), boxX + padding, boxY + padding, fontSize, textColor);
+    DrawText(TextFormat("TIME: %.1f", stats.timeAlive), boxX + padding, boxY + padding + 30, fontSize, textColor);
+    DrawText(TextFormat("KILLS: %03d", stats.enemiesKilled), boxX + padding, boxY + padding + 60, fontSize, textColor);
 }

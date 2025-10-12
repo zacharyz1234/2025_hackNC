@@ -24,10 +24,12 @@ int main() {
     //Load the textures AFTER the window is initialized
     frames[0] = LoadTexture("AdventurerFrame1.png");
     frames[1] = LoadTexture("AdventurerFrame2.png");
-
+    PlayerStats player = { 100, 0, 0.0f };
+    double startTime = GetTime();
     setDefaults(); // 0 out all functions
     genFirstRoom();
     while (!WindowShouldClose()) {
+        
         windowFunctions();
 
         //Update animation timer
@@ -43,7 +45,7 @@ int main() {
         BeginDrawing();
         
 
-        HANDLESTATE();
+        HANDLESTATE(player);
         
 
         DrawTexture(ScreenOverlay, 0, 0, WHITE);

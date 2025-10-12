@@ -2,23 +2,43 @@
 #include"colors.cpp"
 #include<queue>
 #include "cStructs.h"
+#include <cstdlib> 
+#include <ctime> 
 extern Texture2D frames[2];
 extern int currentFrame;
 
 
 
-Vector2 generateRandomPOS() {
-    Vector2 r = {
-        (float)GetRandomValue(10, 200),
-        (float)GetRandomValue(10, 200)
-    };
+Vector2 generateRandomPOS(int screenWidth, int screenHeight) {
+    Vector2 r = { 0 };
+    int side = GetRandomValue(0, 3); // 0=top, 1=bottom, 2=left, 3=right
+
+    switch (side) {
+        case 0: // top
+            r.x = (float)GetRandomValue(0, screenWidth);
+            r.y = -50.0f; // just above the screen
+            break;
+        case 1: // bottom
+            r.x = (float)GetRandomValue(0, screenWidth);
+            r.y = (float)screenHeight + 50.0f; // just below
+            break;
+        case 2: // left
+            r.x = -50.0f;
+            r.y = (float)GetRandomValue(0, screenHeight);
+            break;
+        case 3: // right
+            r.x = (float)screenWidth + 50.0f;
+            r.y = (float)GetRandomValue(0, screenHeight);
+            break;
+    }
+
     return r;
 }
 
 monster generateNewMonster() {
     monster m;
-    Vector2 pos = generateRandomPOS(); // returns Vector2
-    m.position.x = pos.x;
+    Vector2 pos = generateRandomPOS(screenWidth, screenHeight); 
+    m.position.x = pos.x + GetRandomValue(20, 50);
     m.position.y = pos.y;
     return m;
 }
@@ -47,8 +67,8 @@ room generateNewRoom() {
     r.toDown = -1;
 
 
-    // Generate monsters — you can scale by difficulty or room ID
-    int monsterCount = GetRandomValue(0, currentDif++);
+    //Generate monsters
+    int monsterCount = 4;
     for (int i = 0; i < monsterCount; i++) {
         r.monsterNumber.push_back(generateNewMonster());
     }
@@ -70,12 +90,15 @@ void genFirstRoom(){
     roomVec.push_back(firstRoom);
 }
 
-void gameRunning(){
+void gameRunning(PlayerStats player){
      Texture2D FloorTiles = LoadTexture("floor.png");
     DrawTexture(FloorTiles, 0, 0, WHITE);
+    //DrawRoom(((GetScreenWidth()/2) - 20), ((GetScreenHeight()/2)+20));
     updatePlayerPOS(theUser);
     drawMonsters(roomVec, theUser);
+    DrawRetroHUD(player, GetScreenWidth(), GetScreenHeight());
     DrawTexture(frames[currentFrame], theUser.x, theUser.y, WHITE);
+
 }
 
 void drawMenu(){
@@ -88,7 +111,7 @@ void drawMenu(){
 }
 
 
-void HANDLESTATE(){
+void HANDLESTATE(PlayerStats player){
         switch (state) {
             case MAIN_MENU:
                 drawMenu();
@@ -98,7 +121,7 @@ void HANDLESTATE(){
                 break;
 
             case GAME:
-                gameRunning();
+                gameRunning(player);
                 break;
 
             case GAME_END:
