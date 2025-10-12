@@ -28,8 +28,13 @@ int main() {
     double startTime = GetTime();
     setDefaults(); // 0 out all functions
     genFirstRoom();
+    int timeAlive;
     while (!WindowShouldClose()) {
-        
+        float delta = GetFrameTime(); // seconds passed since last frame
+
+        if (gameRunning) {
+            timeAlive += delta;}  // accumulate time while game is active}
+        player.timeAlive = timeAlive;
         windowFunctions();
 
         //Update animation timer
