@@ -13,6 +13,10 @@ int main() {
 
     loadEnemyTextures();
 
+    
+    Texture2D FloorTiles = LoadTexture("floor.png");
+    Texture2D ScreenOverlay = LoadTexture("Screen_overlay.png");
+
     //Puts the overlay over the game
     Texture2D overlayFrame = LoadTexture("UNC_Boy_Frame.png");
 
@@ -36,9 +40,12 @@ int main() {
 
         //start draw
         BeginDrawing();
+        DrawTexture(FloorTiles, 0, 0, WHITE);
 
         HANDLESTATE();
+        
 
+        DrawTexture(ScreenOverlay, 0, 0, WHITE);
         //Draw overlay last so it stays on top
         DrawTexture(overlayFrame, 0, 0, WHITE);
 
@@ -52,8 +59,9 @@ int main() {
     }
 
     unloadEnemyTextures();
-
+    UnloadTexture(FloorTiles);
     UnloadTexture(overlayFrame);
+    UnloadTexture(ScreenOverlay);
 
     CloseWindow();
     return 0;
