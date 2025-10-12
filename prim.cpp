@@ -6,16 +6,16 @@ void setDefaults(){
 }
 
 void updatePlayerPOS(Vector2 &theUser){
-    if(KEY_A){
+    if(IsKeyDown(KEY_A)){
         theUser.x--;
     }
-    if(KEY_D){
+    if(IsKeyDown(KEY_D)){
         theUser.x++;
     }
-    if(KEY_W){
+    if(IsKeyDown(KEY_S)){
         theUser.y++;
     }
-    if(KEY_D){
+    if(IsKeyDown(KEY_W)){
         theUser.y--;
     }
 }
