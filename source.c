@@ -1,4 +1,5 @@
 #include<raylib.h>
+#include<vector>
 
 #pragma once
 
@@ -14,4 +15,13 @@ const float startUserY = 200;
 
 Vector2 theUser;
 
-
+struct monster{
+    int health = 1;
+    Vector2 position;
+};
+struct room{
+    bool isPlayerIn = false;
+    bool hasPlayerVisted = false;
+    std::vector<std::vector<Color>> backGroundOf;
+    std::vector<monster> monsterNumber;
+};
