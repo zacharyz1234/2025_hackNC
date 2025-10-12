@@ -5,27 +5,31 @@ void setDefaults(){
     theUser.x = GetScreenWidth() / 2;
     theUser.y = GetScreenHeight()/ 2;
 }
-const float DEFAULTMONSTERSPEED = 1.5; // temp for now move to source later
 
 //call on float: a < b true
 bool twoIsGreater(float a, float b){
 
+if(a < b){
+    return true;
+}
+
+return false;
 }
 
 /*only call this for monster you are iterating through, changes X and y to move towards player
 at DEFAULT MONSTERSPEED
 */
-void updateMonsterPOS(Vector2 &theMonster){
+void updateMonsterPOS(monster &theMonster){
 
-    if(twoIsGreater(theUser.y, theMonster.x)){
-        theMonster.x -= DEFAULTMONSTERSPEED;
+    if(twoIsGreater(theUser.y, theMonster.position.y)){
+        theMonster.position.x -= DEFAULTMONSTERSPEED;
     }else{
-        theMonster.x += DEFAULTMONSTERSPEED;
+        theMonster.position.x += DEFAULTMONSTERSPEED;
     }
-    if(twoIsGreater(theUser.y, theMonster.y)){
-        theMonster.y -= DEFAULTMONSTERSPEED;
+    if(twoIsGreater(theUser.y, theMonster.position.y)){
+        theMonster.position.y -= DEFAULTMONSTERSPEED;
     }else{
-        theMonster.y += DEFAULTMONSTERSPEED;
+        theMonster.position.y += DEFAULTMONSTERSPEED;
     }
         
     
