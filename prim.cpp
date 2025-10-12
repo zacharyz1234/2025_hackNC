@@ -1,4 +1,4 @@
-#include "source.c"
+#include "source.cpp"
 
 void setDefaults(){
     theUser.x = GetScreenWidth() / 2;

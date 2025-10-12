@@ -12,7 +12,12 @@ enum Gamestate{
 Gamestate state = MAIN_MENU;
 
 
-
+room generateNewRoom(){
+    room r;
+    r.roomID = nextRoomId;
+    nextRoomId++;
+    
+}
 
 
 
