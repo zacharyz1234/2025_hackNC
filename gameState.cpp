@@ -15,11 +15,30 @@ enum Gamestate{
 Gamestate state = MAIN_MENU;
 
 
+Vector2 generateRandomPOS(){
+    float rand = (float)GetRandomValue(10, 200);
+    float rand2 = (float)GetRandomValue(10, 200);
+    Vector2 r;
+    r.x = rand;
+    r.y = rand2;
+    return r;
+}
+
+
 room generateNewRoom(){
     room r;
     r.roomID = nextRoomId;
     nextRoomId++;
     return r;
+}
+
+
+monster generateNewMonster(){
+    monster r;
+    r.health = currentDif;
+    r.position.x;
+    r.position.y;
+
 }
 
 void monsterQueue(std::queue<monster> monstersToUpdate){
