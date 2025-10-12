@@ -24,7 +24,8 @@ room generateNewRoom(){
 
 void monsterQueue(std::queue<monster> monstersToUpdate){
 while(!monstersToUpdate.empty()){
-    //monstersToUpdate.pop
+    monster r = monstersToUpdate.front();
+    updateMonsterPOS(r);
 }
 
 }
