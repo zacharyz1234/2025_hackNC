@@ -1,6 +1,7 @@
 #include "source.cpp"
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 void setDefaults(){
     theUser.x = GetScreenWidth() / 2;
     theUser.y = GetScreenHeight()/ 2;
