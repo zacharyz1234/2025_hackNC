@@ -15,23 +15,14 @@ enum Gamestate{
 Gamestate state = MAIN_MENU;
 
 
-Vector2 generateRandomPOS(){
+vectorGrid generateRandomPOS(){
     float rand = (float)GetRandomValue(10, 200);
     float rand2 = (float)GetRandomValue(10, 200);
-    Vector2 r;
+    vectorGrid r;
     r.x = rand;
     r.y = rand2;
     return r;
 }
-
-
-room generateNewRoom(){
-    room r;
-    r.roomID = nextRoomId;
-    nextRoomId++;
-    return r;
-}
-
 
 monster generateNewMonster(){
     monster r;
@@ -40,14 +31,36 @@ monster generateNewMonster(){
     return r;
 }
 
-void monsterQueue(std::queue<monster> monstersToUpdate){
-while(!monstersToUpdate.empty()){
-    monster r = monstersToUpdate.front();
-    updateMonsterPOS(r);
+
+room generateNewRoom() {
+    room r;
+    r.init = true;
+    r.roomID = nextRoomId++;
+    r.isPlayerIn = false;
+    r.hasPlayerVisted = false;
+
+    r.toLeft = -1;
+    r.toRight = -1;
+    r.toUP = -1;
+    r.toDown = -1;
+
+
+    // Generate monsters — you can scale by difficulty or room ID
+    int monsterCount = GetRandomValue(0, currentDif++);
+    for (int i = 0; i < monsterCount; i++) {
+        r.monsterNumber.push_back(generateNewMonster());
+    }
+
+    return r;
 }
 
-}
 
+
+void populateRoomWithMonsters(std::vector<monster> &mons, int count) {
+    for (int i = 0; i < count; i++) {
+        mons.push_back(generateNewMonster());
+    }
+}
 
 
 
