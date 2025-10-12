@@ -3,17 +3,31 @@
 
 #pragma once
 
-//game const
+
+
+
+//window related
 int screenWidth = 960;
 int screenHeight = 540;
 bool fullscreen = false;
 
+
+//game const
 const float startUserX = 200;
 const float startUserY = 200;
-int nextRoomId = 1;
-float DEFAULTUSERSPEEDPER = 3.5;
+const float DEFAULTUSERSPEEDPER = 3.5;
 const float DEFAULTMONSTERSPEED = 1.5;
 
+
+//changables
+int nextRoomId = 1;
+int currentDif = 1;
+int SpawnMonstersInRoom = 2;
+int spawnTorchesInRoom = 5;
+
+
+
+//data structures 
 Vector2 theUser;
 
 struct monster{
