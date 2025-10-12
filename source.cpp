@@ -10,7 +10,7 @@ bool fullscreen = false;
 
 const float startUserX = 200;
 const float startUserY = 200;
-
+int nextRoomId = 1;
 
 
 Vector2 theUser;
@@ -20,6 +20,7 @@ struct monster{
     Vector2 position;
 };
 struct room{
+    int roomID;
     bool isPlayerIn = false;
     bool hasPlayerVisted = false;
     std::vector<std::vector<Color>> backGroundOf;
