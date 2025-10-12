@@ -1,6 +1,7 @@
 #include"windows.cpp"
 #include"colors.cpp"
 #include<queue>
+#include "cStructs.h"
 extern Texture2D frames[2];
 extern int currentFrame;
 
@@ -14,13 +15,24 @@ Vector2 generateRandomPOS() {
     return r;
 }
 
-monster generateNewMonster(){
-    monster r;
-    r.health = currentDif;
-    r.position = generateRandomPOS();
-    return r;
+monster generateNewMonster() {
+    monster m;
+    Vector2 pos = generateRandomPOS(); // returns Vector2
+    m.position.x = pos.x;
+    m.position.y = pos.y;
+    return m;
 }
 
+void updateMonsterPOS(monster &m, Vector2 playerPos) {
+    Vector2 dir = { playerPos.x - m.position.x, playerPos.y - m.position.y };
+    float len = sqrtf(dir.x * dir.x + dir.y * dir.y);
+    if (len > 0.01f) {
+        dir.x /= len;
+        dir.y /= len;
+        m.position.x += dir.x * DEFAULTMONSTERSPEED;
+        m.position.y += dir.y * DEFAULTMONSTERSPEED;
+    }
+}
 
 room generateNewRoom() {
     room r;
@@ -62,7 +74,7 @@ void gameRunning(){
      Texture2D FloorTiles = LoadTexture("floor.png");
     DrawTexture(FloorTiles, 0, 0, WHITE);
     updatePlayerPOS(theUser);
-    drawMonsters();
+    drawMonsters(roomVec, theUser);
     DrawTexture(frames[currentFrame], theUser.x, theUser.y, WHITE);
 }
 

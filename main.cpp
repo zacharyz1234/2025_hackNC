@@ -1,4 +1,5 @@
 #include "gameState.cpp"
+#include "cStructs.h"
 
 const int FRAMES = 2;
 Texture2D frames[FRAMES];

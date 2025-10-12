@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include "cStructs.h"
 
 Texture2D enemyFrames[2];
 const float frameSpeed = 0.2f;
@@ -65,17 +66,23 @@ void updatePlayerPOS(Vector2 &theUser){
     }
 }
 
-void drawMonsters() {
+void drawMonsters(std::vector<room> &roomVec, Vector2 playerPos) {
+    static int currentFrame = 0;
+    static float frameTimer = 0.0f;
+
+    frameTimer += GetFrameTime();
+    if (frameTimer >= frameSpeed) {
+        frameTimer = 0.0f;
+        currentFrame = (currentFrame + 1) % 2;
+    }
+
     for (room &r : roomVec) {
         if (r.isPlayerIn) {
             for (monster &m : r.monsterNumber) {
                 updateMonsterPOS(m);
-                DrawCircle(m.position.x, m.position.y, MONSTER_RADIUS, RED);
-
-                if (checkCollision(m.position, theUser, MONSTER_RADIUS, PLAYER_RADIUS)) {
-                    TraceLog(LOG_INFO, "Player hit by monster!");
-                    handlePlayerHit();
-                }
+                Vector2 monsterPos = { m.position.x, m.position.y };
+DrawTexture(enemyFrames[currentFrame], monsterPos.x - enemyFrames[currentFrame].width/2,
+                                    monsterPos.y - enemyFrames[currentFrame].height/2, WHITE);
             }
         }
     }

@@ -1,3 +1,6 @@
+#pragma once
+#include "raylib.h"
+
 struct vectorGrid{
     float x;
     float y;

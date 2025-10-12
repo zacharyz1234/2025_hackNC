@@ -32,11 +32,6 @@ int spawnTorchesInRoom = 5;
 //data structures 
 Vector2 theUser;
 
-struct monster {
-    int health;
-    Vector2 position;
-};
-
 struct room {
     bool init = false;
     int roomID;
