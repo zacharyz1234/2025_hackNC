@@ -14,7 +14,7 @@ int main() {
     loadEnemyTextures();
 
     
-    Texture2D FloorTiles = LoadTexture("floor.png");
+   
     Texture2D ScreenOverlay = LoadTexture("Screen_overlay.png");
 
     //Puts the overlay over the game
@@ -40,7 +40,7 @@ int main() {
 
         //start draw
         BeginDrawing();
-        DrawTexture(FloorTiles, 0, 0, WHITE);
+        
 
         HANDLESTATE();
         
@@ -59,7 +59,7 @@ int main() {
     }
 
     unloadEnemyTextures();
-    UnloadTexture(FloorTiles);
+   
     UnloadTexture(overlayFrame);
     UnloadTexture(ScreenOverlay);
 

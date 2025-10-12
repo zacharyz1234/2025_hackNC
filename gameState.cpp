@@ -69,6 +69,8 @@ void genFirstRoom(){
 }
 
 void gameRunning(){
+     Texture2D FloorTiles = LoadTexture("floor.png");
+    DrawTexture(FloorTiles, 0, 0, WHITE);
     updatePlayerPOS(theUser);
     drawMonsters();
     DrawTexture(frames[currentFrame], theUser.x, theUser.y, WHITE);
