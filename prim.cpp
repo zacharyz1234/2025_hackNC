@@ -7,16 +7,16 @@ void setDefaults(){
 
 void updatePlayerPOS(Vector2 &theUser){
     if(IsKeyDown(KEY_A)){
-        theUser.x--;
+        theUser.x -= DEFAULTUSERSPEEDPER;
     }
     if(IsKeyDown(KEY_D)){
-        theUser.x++;
+        theUser.x += DEFAULTUSERSPEEDPER;
     }
     if(IsKeyDown(KEY_S)){
-        theUser.y++;
+        theUser.y += DEFAULTUSERSPEEDPER;
     }
     if(IsKeyDown(KEY_W)){
-        theUser.y--;
+        theUser.y -= DEFAULTUSERSPEEDPER;
     }
 }
 
