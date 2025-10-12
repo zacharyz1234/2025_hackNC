@@ -1,9 +1,8 @@
 #include<raylib.h>
 #include<vector>
+#include"cStructs.h"
 
 #pragma once
-
-
 
 
 //window related
@@ -30,16 +29,17 @@ int spawnTorchesInRoom = 5;
 //data structures 
 Vector2 theUser;
 
-struct monster{
-    int health = 1;
-    Vector2 position;
-};
 struct room{
+    bool init = false;
     int roomID;
     bool isPlayerIn = false;
     bool hasPlayerVisted = false;
     std::vector<std::vector<Color>> backGroundOf;
     std::vector<monster> monsterNumber;
+    int toLeft = NULL;
+    int toRight = NULL;
+    int toUP = NULL;
+    int toDown = NULL;
 };
 
 std::vector<room> roomVec;

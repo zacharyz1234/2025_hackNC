@@ -19,6 +19,7 @@ int main() {
     frames[1] = LoadTexture("AdventurerFrame2.png");
 
     setDefaults(); // 0 out all functions
+    genFirstRoom();
     while (!WindowShouldClose()) {
         windowFunctions();
 
