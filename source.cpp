@@ -4,11 +4,14 @@
 
 #pragma once
 
+#define PLAYER_RADIUS 10.0f
+#define MONSTER_RADIUS 10.0f
 
 //window related
 int screenWidth = 1920;
 int screenHeight = 1080;
 bool fullscreen = false;
+int playerHealth = 3; //zak maybe draw hearts for this?
 
 
 //game const
@@ -29,7 +32,12 @@ int spawnTorchesInRoom = 5;
 //data structures 
 Vector2 theUser;
 
-struct room{
+struct monster {
+    int health;
+    Vector2 position;
+};
+
+struct room {
     bool init = false;
     int roomID;
     bool isPlayerIn = false;
@@ -42,5 +50,19 @@ struct room{
     int toDown = -1;
 };
 
+
+
 std::vector<room> roomVec;
 
+
+
+
+//gameState
+enum Gamestate{
+    MAIN_MENU,
+    GAME,
+    GAME_END,
+    
+};
+
+Gamestate state = MAIN_MENU;

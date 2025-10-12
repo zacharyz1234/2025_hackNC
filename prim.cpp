@@ -1,11 +1,10 @@
+#include "raylib.h" 
 #include "source.cpp"
 #include <iostream>
 #include <algorithm>
 #include <cmath>
 
 Texture2D enemyFrames[2];
-//int currentFrame = 0;
-//float frameTimer = 0.0f;
 const float frameSpeed = 0.2f;
 
 void loadEnemyTextures(){
@@ -21,12 +20,15 @@ void unloadEnemyTextures(){
 void setDefaults(){
     theUser.x = GetScreenWidth() / 2;
     theUser.y = GetScreenHeight()/ 2;
-    
 }
 
-/*only call this for monster you are iterating through, changes X and y to move towards player
-at DEFAULT MONSTERSPEED
-*/
+bool checkCollision(Vector2 a, Vector2 b, float aRadius, float bRadius) {
+    float dx = a.x - b.x;
+    float dy = a.y - b.y;
+    float distance = sqrtf(dx * dx + dy * dy);
+    return distance < (aRadius + bRadius);
+}
+
 void updateMonsterPOS(monster &m) {
     Vector2 dir = { theUser.x - m.position.x, theUser.y - m.position.y };
     float len = sqrtf(dir.x * dir.x + dir.y * dir.y);
@@ -38,6 +40,15 @@ void updateMonsterPOS(monster &m) {
     }
 }
 
+void handlePlayerHit() {
+    theUser.x = GetScreenWidth() / 2;
+    theUser.y = GetScreenHeight() / 2;
+
+    playerHealth--;
+    if (playerHealth <= 0) {
+        state = GAME_END;
+    }
+}
 
 void updatePlayerPOS(Vector2 &theUser){
     if(IsKeyDown(KEY_A)){
@@ -55,23 +66,16 @@ void updatePlayerPOS(Vector2 &theUser){
 }
 
 void drawMonsters() {
-    static int currentFrame = 0;
-    static float frameTimer = 0.0f;
-
-    frameTimer += GetFrameTime();
-    if (frameTimer >= frameSpeed) {
-        frameTimer = 0.0f;
-        currentFrame = (currentFrame + 1) % 2;
-    }
-
     for (room &r : roomVec) {
         if (r.isPlayerIn) {
             for (monster &m : r.monsterNumber) {
                 updateMonsterPOS(m);
-                DrawTexture(enemyFrames[currentFrame],
-                            m.position.x - enemyFrames[currentFrame].width / 2,
-                            m.position.y - enemyFrames[currentFrame].height / 2,
-                            WHITE);
+                DrawCircle(m.position.x, m.position.y, MONSTER_RADIUS, RED);
+
+                if (checkCollision(m.position, theUser, MONSTER_RADIUS, PLAYER_RADIUS)) {
+                    TraceLog(LOG_INFO, "Player hit by monster!");
+                    handlePlayerHit();
+                }
             }
         }
     }

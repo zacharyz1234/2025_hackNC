@@ -5,22 +5,12 @@ extern Texture2D frames[2];
 extern int currentFrame;
 
 
-enum Gamestate{
-    MAIN_MENU,
-    GAME,
-    GAME_END,
-    
-};
 
-Gamestate state = MAIN_MENU;
-
-
-vectorGrid generateRandomPOS(){
-    float rand = (float)GetRandomValue(10, 200);
-    float rand2 = (float)GetRandomValue(10, 200);
-    vectorGrid r;
-    r.x = rand;
-    r.y = rand2;
+Vector2 generateRandomPOS() {
+    Vector2 r = {
+        (float)GetRandomValue(10, 200),
+        (float)GetRandomValue(10, 200)
+    };
     return r;
 }
 
