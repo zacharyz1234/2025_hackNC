@@ -41,3 +41,4 @@ struct room{
     std::vector<std::vector<Color>> backGroundOf;
     std::vector<monster> monsterNumber;
 };
+std::vector<room> roomVec;
