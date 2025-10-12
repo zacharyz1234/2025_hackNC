@@ -1,6 +1,6 @@
 #include"windows.cpp"
 #include"colors.cpp"
-
+#include<queue>
 extern Texture2D frames[2];
 extern int currentFrame;
 
@@ -22,7 +22,12 @@ room generateNewRoom(){
     return r;
 }
 
+void monsterQueue(std::queue<monster> monstersToUpdate){
+while(!monstersToUpdate.empty()){
+    //monstersToUpdate.pop
+}
 
+}
 
 
 
