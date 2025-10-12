@@ -62,10 +62,15 @@ void populateRoomWithMonsters(std::vector<monster> &mons, int count) {
     }
 }
 
-
+void genFirstRoom(){
+    room firstRoom = generateNewRoom();
+    firstRoom.isPlayerIn = true;
+    roomVec.push_back(firstRoom);
+}
 
 void gameRunning(){
     updatePlayerPOS(theUser);
+    drawMonsters();
     DrawTexture(frames[currentFrame], theUser.x, theUser.y, WHITE);
 }
 
