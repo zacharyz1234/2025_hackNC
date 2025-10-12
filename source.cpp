@@ -7,8 +7,8 @@
 
 
 //window related
-int screenWidth = 1920;
-int screenHeight = 1080;
+int screenWidth = 960;
+int screenHeight = 540;
 bool fullscreen = false;
 
 
@@ -41,3 +41,4 @@ struct room{
     std::vector<std::vector<Color>> backGroundOf;
     std::vector<monster> monsterNumber;
 };
+std::vector<room> roomVec;
