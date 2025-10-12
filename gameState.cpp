@@ -1,6 +1,9 @@
 #include"windows.cpp"
 #include"colors.cpp"
 
+extern Texture2D frames[2];
+extern int currentFrame;
+
 
 enum Gamestate{
     MAIN_MENU,
@@ -16,7 +19,7 @@ room generateNewRoom(){
     room r;
     r.roomID = nextRoomId;
     nextRoomId++;
-    
+    return r;
 }
 
 
@@ -26,7 +29,7 @@ room generateNewRoom(){
 
 void gameRunning(){
     updatePlayerPOS(theUser);
-    DrawCircle(theUser.x, theUser.y, (float)5, RED);
+    DrawTexture(frames[currentFrame], theUser.x, theUser.y, WHITE);
 }
 
 void drawMenu(){
