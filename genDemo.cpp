@@ -12,11 +12,25 @@
 
 
 
-
-
-struct monster{
-
+struct vectorGrid{
+    float x;
+    float y;
 };
+
+
+
+
+std::vector<monster> makeNewMonstersVector(int amount){
+    std::vector<monster> monsters;
+    for(int i = 0; i < amount; i++){
+        monster m;
+        m.health = 1 + rand() % 5; // Optional: random health between 1 and 5
+        m.position = { static_cast<float>(rand() % 10), static_cast<float>(rand() % 10) }; // Random positions
+        monsters.push_back(m);
+    }
+    return monsters;
+}
+
 
 
 struct room {
@@ -75,7 +89,8 @@ room generateNewRoom(){
 
 
 
-
+    printf("generateNewRoom()\n");
+    printf("ID: %d\n", globalRoomIdCounter);
     globalRoomIdCounter++; //update count as only one room is generated, and a call on this function will increment the count
     return r;
 }
@@ -90,21 +105,25 @@ void checkIfRoomsAreLoadedAround(room &AroundThisRoom){
         room newRoom = generateNewRoom();
         AroundThisRoom.toLeft = newRoom.roomID; //set side to that rooms Id
         globalRoomVector.push_back(newRoom);
+        printf("checkIfRoomsAreLoadedAround(), toLeft");
     }
     if(AroundThisRoom.toRight == -1){
         room newRoom = generateNewRoom();
         AroundThisRoom.toRight = newRoom.roomID; //set side to that rooms Id
         globalRoomVector.push_back(newRoom);
+        printf("checkIfRoomsAreLoadedAround(), toRight");
     }
     if(AroundThisRoom.toUP == -1){
         room newRoom = generateNewRoom();
         AroundThisRoom.toUP = newRoom.roomID; //set side to that rooms Id     
         globalRoomVector.push_back(newRoom);
+        printf("checkIfRoomsAreLoadedAround(), toUP");
     }
     if(AroundThisRoom.toDown == -1){
         room newRoom = generateNewRoom();
         AroundThisRoom.toDown = newRoom.roomID; //set side to that rooms Id 
-        globalRoomVector.push_back(newRoom);    
+        globalRoomVector.push_back(newRoom);   
+        printf("checkIfRoomsAreLoadedAround(), toDown");
     }
     }
     
@@ -122,6 +141,7 @@ int main(){
     globalRoomVector.push_back(generateNewRoom()); //makes first room before window opens
     while(temp != 'q'){
         checkIfRoomsAreLoadedAround(globalRoomVector[globalPlayerIsInThisRoom]); //global playerIsInThisRoom should always update with player
+        cin >> temp;
 
     }
 

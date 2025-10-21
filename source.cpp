@@ -19,7 +19,7 @@ const float startUserX = 200;
 const float startUserY = 200;
 const float DEFAULTUSERSPEEDPER = 3.5;
 const float DEFAULTMONSTERSPEED = 1.5;
-
+bool isGameRunning = true;
 
 //changables
 int nextRoomId = 1;

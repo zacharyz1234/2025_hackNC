@@ -32,7 +32,7 @@ int main() {
     while (!WindowShouldClose()) {
         float delta = GetFrameTime(); // seconds passed since last frame
 
-        if (gameRunning) {
+        if (isGameRunning) {
             timeAlive += delta;}  // accumulate time while game is active}
         player.timeAlive = timeAlive;
         windowFunctions();
