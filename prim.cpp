@@ -9,8 +9,8 @@ Texture2D enemyFrames[2];
 const float frameSpeed = 0.2f;
 
 void loadEnemyTextures(){
-    enemyFrames[0] = LoadTexture("EnemyFrame1.png");
-    enemyFrames[1] = LoadTexture("EnemyFrame2.png");
+    enemyFrames[0] = LoadTexture("images/EnemyFrame1.png");
+    enemyFrames[1] = LoadTexture("images/EnemyFrame2.png");
 }
 
 void unloadEnemyTextures(){

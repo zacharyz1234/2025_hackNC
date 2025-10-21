@@ -91,7 +91,7 @@ void genFirstRoom(){
 }
 
 void gameRunning(PlayerStats player){
-     Texture2D FloorTiles = LoadTexture("floor.png");
+     Texture2D FloorTiles = LoadTexture("images/floor.png");
     DrawTexture(FloorTiles, 0, 0, WHITE);
     //DrawRoom(((GetScreenWidth()/2) - 20), ((GetScreenHeight()/2)+20));
     updatePlayerPOS(theUser);
