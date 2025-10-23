@@ -1,9 +1,19 @@
+/*
+This file feeds together lower level functions from prim, windows, and roomGen to 
+prepare to lead them into main().
+
+
+*/
+
+
+
+
 #include"windows.cpp"
-#include"colors.cpp"
 #include<queue>
-#include "cStructs.h"
-#include <cstdlib> 
-#include <ctime> 
+#include"cStructs.h"
+#include<cstdlib> 
+#include<ctime> 
+#include"roomGen.cpp"
 extern Texture2D frames[2];
 extern int currentFrame;
 

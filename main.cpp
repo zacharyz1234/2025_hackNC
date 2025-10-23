@@ -17,18 +17,21 @@ int main() {
     
    
     Texture2D ScreenOverlay = LoadTexture("images/Screen_overlay.png");
-
-    //Puts the overlay over the game
     Texture2D overlayFrame = LoadTexture("images/UNC_Boy_Frame.png");
+
+
 
     //Load the textures AFTER the window is initialized
     frames[0] = LoadTexture("images/AdventurerFrame1.png");
     frames[1] = LoadTexture("images/AdventurerFrame2.png");
     PlayerStats player = { 100, 0, 0.0f };
     double startTime = GetTime();
+
     setDefaults(); // 0 out all functions
     genFirstRoom();
+
     int timeAlive;
+    
     while (!WindowShouldClose()) {
         float delta = GetFrameTime(); // seconds passed since last frame
 
