@@ -8,7 +8,7 @@ float frameTime = 0.2f; //Seconds per frame
 float timer = 0.0f;
 
 int main() {
-
+    srand(time(0)); // seed for rand
     InitWindow(global_screenWidth, global_screenHeight, "Raylib Fullscreen Example");
     SetTargetFPS(60);
 
@@ -31,7 +31,7 @@ int main() {
     genFirstRoom();
 
     int timeAlive;
-    
+
     while (!WindowShouldClose()) {
         float delta = GetFrameTime(); // seconds passed since last frame
 
