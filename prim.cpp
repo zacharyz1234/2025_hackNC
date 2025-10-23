@@ -19,8 +19,8 @@ void unloadEnemyTextures(){
 }
 
 void setDefaults(){
-    theUser.x = GetScreenWidth() / 2;
-    theUser.y = GetScreenHeight()/ 2;
+    global_theUser.x = GetScreenWidth() / 2;
+    global_theUser.y = GetScreenHeight()/ 2;
 }
 
 bool checkCollision(Vector2 a, Vector2 b, float aRadius, float bRadius) {
@@ -31,38 +31,38 @@ bool checkCollision(Vector2 a, Vector2 b, float aRadius, float bRadius) {
 }
 
 void updateMonsterPOS(monster &m) {
-    Vector2 dir = { theUser.x - m.position.x, theUser.y - m.position.y };
+    Vector2 dir = { global_theUser.x - m.position.x, global_theUser.y - m.position.y };
     float len = sqrtf(dir.x * dir.x + dir.y * dir.y);
     if (len > 0.01f) {
         dir.x /= len;
         dir.y /= len;
-        m.position.x += dir.x * DEFAULTMONSTERSPEED;
-        m.position.y += dir.y * DEFAULTMONSTERSPEED;
+        m.position.x += dir.x * global_DEFAULTMONSTERSPEED;
+        m.position.y += dir.y * global_DEFAULTMONSTERSPEED;
     }
 }
 
 void handlePlayerHit() {
-    theUser.x = GetScreenWidth() / 2;
-    theUser.y = GetScreenHeight() / 2;
+    global_theUser.x = GetScreenWidth() / 2;
+    global_theUser.y = GetScreenHeight() / 2;
 
-    playerHealth = false;
-    if (playerHealth <= 0) {
+    global_playerHealth = false;
+    if (!global_playerHealth) {
         state = GAME_END;
     }
 }
 
-void updatePlayerPOS(Vector2 &theUser){
+void updatePlayerPOS(Vector2 &global_theUser){
     if(IsKeyDown(KEY_A)){
-        theUser.x -= DEFAULTUSERSPEEDPER;
+        global_theUser.x -= global_DEFAULTUSERSPEEDPER;
     }
     if(IsKeyDown(KEY_D)){
-        theUser.x += DEFAULTUSERSPEEDPER;
+        global_theUser.x += global_DEFAULTUSERSPEEDPER;
     }
     if(IsKeyDown(KEY_S)){
-        theUser.y += DEFAULTUSERSPEEDPER;
+        global_theUser.y += global_DEFAULTUSERSPEEDPER;
     }
     if(IsKeyDown(KEY_W)){
-        theUser.y -= DEFAULTUSERSPEEDPER;
+        global_theUser.y -= global_DEFAULTUSERSPEEDPER;
     }
 }
 
