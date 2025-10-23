@@ -1,54 +1,6 @@
-#include<iostream>
-#include<vector>
-#include<queue>
-#include<ctime>
-#include<cstdlib>
-/*
 
+#include<prim.cpp>
 
-
-*/
-
-
-
-
-struct vectorGrid{
-    float x;
-    float y;
-};
-
-struct monster{
-    int health;
-    vectorGrid position;
-};
-
-
-
-
-struct room {
-    bool init = false;
-    int roomID;
-    bool isPlayerIn = false;
-    bool hasPlayerVisted = false;
-    std::string floorType;
-    std::string wallType;
-    std::vector<monster> monsterNumber;
-    std::string torchColor;
-    int toLeft = -1;
-    int toRight = -1;
-    int toUP = -1;
-    int toDown = -1;
-};
-
-int globalRoomIdCounter = 0;
-std::vector<room> globalRoomVector;
-int globalMaxMonsterSpawn = 1;
-int globalPlayerIsInThisRoom = 0;
-
-
-/*
-When finished, this will make a new vector of completely random monsters
-*/
 std::vector<monster> makeNewMonstersVector(int amount){
     std::vector<monster> monsters;
     for(int i = 0; i < amount; i++){
@@ -72,7 +24,7 @@ room generateNewRoom(){
     room r;
     int floor = (rand() % 6) + 1;
     int wall = (rand() % 3) + 1;
-    int monsterCount = (rand() % global_MaxMonsterSpawn) + 1;
+    int monsterCount = (rand() % globalMaxMonsterSpawn) + 1;
     int torch = (rand() % 5) + 1;
     r.roomID = globalRoomIdCounter;
 
@@ -85,17 +37,14 @@ room generateNewRoom(){
 
 
 
-    printf("generateNewRoom()\n");
+    printf("generateNewRoom() called \n");
     printf("ID: %d\n", globalRoomIdCounter);
     globalRoomIdCounter++; //update count as only one room is generated, and a call on this function will increment the count
     return r;
 }
 
 
-/*
-checks if the room to the side of room x exist, and if they dont generates a new room and pushes it onto the vector
-in place newroom.ID. SHOULD ONLY BE CALLED ON THE USERS CURRENT ROOM
-*/
+
 void checkIfRoomsAreLoadedAround(room &AroundThisRoom){
 if (AroundThisRoom.toLeft == -1) {
     room newRoom = generateNewRoom();
@@ -129,43 +78,3 @@ if (AroundThisRoom.toDown == -1) {
 }
 
     }
-    
-
-    void printOj(){
-        printf("CURRENT ROOM: %d \n", globalRoomVector[globalPlayerIsInThisRoom].roomID);
-        printf("UP: %d \n", globalRoomVector[globalPlayerIsInThisRoom].toUP);
-        printf("DOWN: %d \n", globalRoomVector[globalPlayerIsInThisRoom].toDown);
-        printf("RIGHT: %d \n", globalRoomVector[globalPlayerIsInThisRoom].toRight);
-        printf("LEFT: %d \n", globalRoomVector[globalPlayerIsInThisRoom].toLeft);
-        printf("PLAYERHASVISTED: %d \n", globalRoomVector[globalPlayerIsInThisRoom].hasPlayerVisted);
-    }
-
-
-
-int main(){
-    bool gamerunning = true;
-
-
-
-    char temp = 'o';
-    globalRoomVector.push_back(generateNewRoom()); 
-    srand(time(0));
-    while(temp != 'q'){
-        checkIfRoomsAreLoadedAround(globalRoomVector[globalPlayerIsInThisRoom]); 
-
-
-
-
-        std::cin >> temp;
-
-        if(temp == 'p'){
-            printOj();
-        }
-        if(temp == 'a'){
-            globalPlayerIsInThisRoom = globalRoomVector[globalPlayerIsInThisRoom].toLeft;
-        }
-
-    }
-
-
-}

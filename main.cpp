@@ -9,7 +9,7 @@ float timer = 0.0f;
 
 int main() {
 
-    InitWindow(screenWidth, screenHeight, "Raylib Fullscreen Example");
+    InitWindow(global_screenWidth, global_screenHeight, "Raylib Fullscreen Example");
     SetTargetFPS(60);
 
     loadEnemyTextures();
@@ -32,7 +32,7 @@ int main() {
     while (!WindowShouldClose()) {
         float delta = GetFrameTime(); // seconds passed since last frame
 
-        if (isGameRunning) {
+        if (global_isGameRunning) {
             timeAlive += delta;}  // accumulate time while game is active}
         player.timeAlive = timeAlive;
         windowFunctions();

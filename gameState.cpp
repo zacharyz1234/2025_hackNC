@@ -37,7 +37,7 @@ Vector2 generateRandomPOS(int screenWidth, int screenHeight) {
 
 monster generateNewMonster() {
     monster m;
-    Vector2 pos = generateRandomPOS(screenWidth, screenHeight); 
+    Vector2 pos = generateRandomPOS(global_screenWidth, global_screenHeight); 
     m.position.x = pos.x + GetRandomValue(20, 50);
     m.position.y = pos.y;
     return m;
@@ -49,15 +49,15 @@ void updateMonsterPOS(monster &m, Vector2 playerPos) {
     if (len > 0.01f) {
         dir.x /= len;
         dir.y /= len;
-        m.position.x += dir.x * DEFAULTMONSTERSPEED;
-        m.position.y += dir.y * DEFAULTMONSTERSPEED;
+        m.position.x += dir.x * global_DEFAULTMONSTERSPEED;
+        m.position.y += dir.y * global_DEFAULTMONSTERSPEED;
     }
 }
 
 room generateNewRoom() {
     room r;
     r.init = true;
-    r.roomID = nextRoomId++;
+    r.roomID = global_RoomIdCounter++;
     r.isPlayerIn = false;
     r.hasPlayerVisted = false;
 
@@ -94,10 +94,10 @@ void gameRunning(PlayerStats player){
      Texture2D FloorTiles = LoadTexture("images/floor.png");
     DrawTexture(FloorTiles, 0, 0, WHITE);
     //DrawRoom(((GetScreenWidth()/2) - 20), ((GetScreenHeight()/2)+20));
-    updatePlayerPOS(theUser);
-    drawMonsters(roomVec, theUser);
+    updatePlayerPOS(global_theUser);
+    drawMonsters(roomVec, global_theUser);
     DrawRetroHUD(player, GetScreenWidth(), GetScreenHeight());
-    DrawTexture(frames[currentFrame], theUser.x, theUser.y, WHITE);
+    DrawTexture(frames[currentFrame], global_theUser.x, global_theUser.y, WHITE);
 
 }
 

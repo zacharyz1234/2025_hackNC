@@ -7,30 +7,43 @@
 #define PLAYER_RADIUS 10.0f
 #define MONSTER_RADIUS 10.0f
 
+
+
+/*
+Variables here should be marked global_ for ease of access/ prevent confusion. If editing these,
+you should add it in the commit comment to help track large changes
+
+
+
+*/
+
+
 //window related
-int screenWidth = 1920;
-int screenHeight = 1080;
-bool fullscreen = false;
-bool playerHealth = true;
+int global_screenWidth = 1920;
+int global_screenHeight = 1080;
+bool global_fullscreen = false;
+bool global_playerHealth = true;
 
 
 //game const
-const float startUserX = 200;
-const float startUserY = 200;
-const float DEFAULTUSERSPEEDPER = 3.5;
-const float DEFAULTMONSTERSPEED = 1.5;
-bool isGameRunning = true;
+const float global_startUserX = 200;
+const float global_startUserY = 200;
+const float global_DEFAULTUSERSPEEDPER = 3.5;
+const float global_DEFAULTMONSTERSPEED = 1.5;
+bool global_isGameRunning = true;
 
 //changables
-int nextRoomId = 1;
-int currentDif = 3; //add more monst
-int SpawnMonstersInRoom = 3;
-int spawnTorchesInRoom = 5;
+
+
+int global_RoomIdCounter = 0;
+int global_MaxMonsterSpawn = 1;
+int global_PlayerIsInThisRoom = 0;
+int global_currentDif = 3; //add more monst, might change later
 
 
 
 //data structures 
-Vector2 theUser;
+Vector2 global_theUser;
 
 struct room {
     bool init = false;
