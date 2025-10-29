@@ -69,13 +69,17 @@ void genFirstRoom(){
 }
 
 void gameRunning(PlayerStats player){
-     Texture2D FloorTiles = LoadTexture("images/floor.png");
+    Texture2D WallTiles = LoadTexture("images/wall.png");
+    Texture2D FloorTiles = LoadTexture("images/floor.png");
     DrawTexture(FloorTiles, 0, 0, WHITE);
+    
     //DrawRoom(((GetScreenWidth()/2) - 20), ((GetScreenHeight()/2)+20));
     updatePlayerPOS(global_theUser);
     drawMonsters(roomVec, global_theUser);
-    DrawRetroHUD(player, GetScreenWidth(), GetScreenHeight());
+    
     DrawTexture(frames[currentFrame], global_theUser.x, global_theUser.y, WHITE);
+    DrawTexture(WallTiles, 0, 0, WHITE);
+    DrawRetroHUD(player, GetScreenWidth(), GetScreenHeight());
 
 }
 
