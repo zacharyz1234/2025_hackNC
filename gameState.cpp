@@ -4,17 +4,12 @@ prepare to lead them into main().
 
 
 */
-
-
-
-
 #include"windows.cpp"
 #include<queue>
 #include"cStructs.h"
 #include<cstdlib> 
 #include<ctime> 
 #include"roomGen.cpp"
-
 
 
 
@@ -44,14 +39,12 @@ Vector2 generateRandomPOS(int screenWidth, int screenHeight) {
     return r;
 }
 
-monster generateNewMonster() {
-    monster m;
-    Vector2 pos = generateRandomPOS(global_screenWidth, global_screenHeight); 
-    m.position.x = pos.x + GetRandomValue(20, 50);
-    m.position.y = pos.y;
-    return m;
-}
 
+/*
+updates monsters location based on player. Should be fixed soon to guide to middle of player sprite, 
+not top left edge.
+
+*/
 void updateMonsterPOS(monster &m, Vector2 playerPos) {
     Vector2 dir = { playerPos.x - m.position.x, playerPos.y - m.position.y };
     float len = sqrtf(dir.x * dir.x + dir.y * dir.y);
@@ -63,18 +56,16 @@ void updateMonsterPOS(monster &m, Vector2 playerPos) {
     }
 }
 
+/*
+Calls function when game runs. Should always show generating all directions directly after this call
 
-
-void populateRoomWithMonsters(std::vector<monster> &mons, int count) {
-    for (int i = 0; i < count; i++) {
-        mons.push_back(generateNewMonster());
-    }
-}
-
+*/
 void genFirstRoom(){
-    room firstRoom = generateNewRoom();
-    firstRoom.isPlayerIn = true;
-    roomVec.push_back(firstRoom);
+    RoomGenerator generator;
+    room startRoom = generator.generateNewRoom();
+    roomVec.push_back(startRoom);
+    generator.checkIfRoomsAreLoadedAround(startRoom);
+
 }
 
 void gameRunning(PlayerStats player){
