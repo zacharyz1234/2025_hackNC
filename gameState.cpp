@@ -69,7 +69,7 @@ void genFirstRoom(){
 }
 
 void gameRunning(PlayerStats player){
-    Texture2D WallTiles = LoadTexture("images/wall.png");
+    Texture2D WallTiles = LoadTexture("images/DungeonWall.png");
     Texture2D FloorTiles = LoadTexture("images/floor.png");
     DrawTexture(FloorTiles, 0, 0, WHITE);
     
@@ -79,7 +79,7 @@ void gameRunning(PlayerStats player){
     
     DrawTexture(frames[currentFrame], global_theUser.x, global_theUser.y, WHITE);
     DrawTexture(WallTiles, 0, 0, WHITE);
-    DrawRetroHUD(player, GetScreenWidth(), GetScreenHeight());
+    DrawRetroHUD(player, 560, GetScreenHeight());
 
 }
 
