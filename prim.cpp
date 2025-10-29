@@ -5,8 +5,8 @@
 #include <cmath>
 #include "cStructs.h"
 
-Texture2D enemyFrames[2];
-const float frameSpeed = 0.2f;
+#pragma once
+
 
 void loadEnemyTextures(){
     enemyFrames[0] = LoadTexture("images/EnemyFrame1.png");

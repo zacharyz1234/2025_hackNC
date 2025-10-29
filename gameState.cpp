@@ -14,8 +14,7 @@ prepare to lead them into main().
 #include<cstdlib> 
 #include<ctime> 
 #include"roomGen.cpp"
-extern Texture2D frames[2];
-extern int currentFrame;
+
 
 
 
@@ -62,28 +61,6 @@ void updateMonsterPOS(monster &m, Vector2 playerPos) {
         m.position.x += dir.x * global_DEFAULTMONSTERSPEED;
         m.position.y += dir.y * global_DEFAULTMONSTERSPEED;
     }
-}
-
-room generateNewRoom() {
-    room r;
-    r.init = true;
-    r.roomID = global_RoomIdCounter++;
-    r.isPlayerIn = false;
-    r.hasPlayerVisted = false;
-
-    r.toLeft = -1;
-    r.toRight = -1;
-    r.toUP = -1;
-    r.toDown = -1;
-
-
-    //Generate monsters
-    int monsterCount = 4;
-    for (int i = 0; i < monsterCount; i++) {
-        r.monsterNumber.push_back(generateNewMonster());
-    }
-
-    return r;
 }
 
 

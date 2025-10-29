@@ -1,5 +1,8 @@
 
-#include<prim.cpp>
+#include"prim.cpp"
+
+
+#pragma once
 
 std::vector<monster> makeNewMonstersVector(int amount){
     std::vector<monster> monsters;
@@ -18,15 +21,16 @@ std::vector<monster> makeNewMonstersVector(int amount){
 Generates and returns a new room
 */
 room generateNewRoom(){
-    std::string floorTypes[6] = {"dirt", "gravel", "glass", "sand", "etc", "etc"};
-    std::string wallTypes[3] = {"wall1", "wall2", "wall3"}; 
-    std::string torchColor[5] = {"blue", "green", "purple", "red", "none"};
+    //when done. define what these mean.
+    char floorTypes[6] = {'d', 'g', 'w', 'r', 'e', 'e'};
+    char wallTypes[6] = {'d', 'g', 'w', 'r', 'e', 'e'};
+    char torchColor[6] = {'d', 'g', 'w', 'r', 'e', 'e'};
     room r;
     int floor = (rand() % 6) + 1;
     int wall = (rand() % 3) + 1;
-    int monsterCount = (rand() % globalMaxMonsterSpawn) + 1;
+    int monsterCount = (rand() % global_MaxMonsterSpawn) + 1;
     int torch = (rand() % 5) + 1;
-    r.roomID = globalRoomIdCounter;
+    r.roomID = global_RoomIdCounter;
 
     r.torchColor = torchColor[torch];
     r.floorType = floorTypes[floor];
@@ -38,8 +42,8 @@ room generateNewRoom(){
 
 
     printf("generateNewRoom() called \n");
-    printf("ID: %d\n", globalRoomIdCounter);
-    globalRoomIdCounter++; //update count as only one room is generated, and a call on this function will increment the count
+    printf("ID: %d\n", global_RoomIdCounter);
+    global_RoomIdCounter++; //update count as only one room is generated, and a call on this function will increment the count
     return r;
 }
 
@@ -51,7 +55,7 @@ if (AroundThisRoom.toLeft == -1) {
     newRoom.toRight = AroundThisRoom.roomID; // new room knows it is to the left of current
     AroundThisRoom.toLeft = newRoom.roomID;  // current room knows about the new room on the left
 
-    globalRoomVector.push_back(newRoom);
+    roomVec.push_back(newRoom);
     printf("checkIfRoomsAreLoadedAround(), toLeft\n");
 }
 
@@ -59,21 +63,21 @@ if (AroundThisRoom.toRight == -1) {
     room newRoom = generateNewRoom();
     newRoom.toLeft = AroundThisRoom.roomID;
     AroundThisRoom.toRight = newRoom.roomID;
-    globalRoomVector.push_back(newRoom);
+    roomVec.push_back(newRoom);
     printf("checkIfRoomsAreLoadedAround(), toRight\n");
 }
 if (AroundThisRoom.toUP == -1) {
     room newRoom = generateNewRoom();
     newRoom.toDown = AroundThisRoom.roomID;
     AroundThisRoom.toUP = newRoom.roomID;
-    globalRoomVector.push_back(newRoom);
+    roomVec.push_back(newRoom);
     printf("checkIfRoomsAreLoadedAround(), toUP\n");
 }
 if (AroundThisRoom.toDown == -1) {
     room newRoom = generateNewRoom();
     newRoom.toUP = AroundThisRoom.roomID;
     AroundThisRoom.toDown = newRoom.roomID;
-    globalRoomVector.push_back(newRoom);
+    roomVec.push_back(newRoom);
     printf("checkIfRoomsAreLoadedAround(), toDown\n");
 }
 

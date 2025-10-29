@@ -1,5 +1,4 @@
 #pragma once
-
 struct vectorGrid{
     float x;
     float y;

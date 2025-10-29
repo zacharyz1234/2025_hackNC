@@ -1,9 +1,7 @@
 #include "gameState.cpp"
 #include "cStructs.h"
 
-const int FRAMES = 2;
-Texture2D frames[FRAMES];
-int currentFrame = 0;
+
 float frameTime = 0.2f; //Seconds per frame
 float timer = 0.0f;
 

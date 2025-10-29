@@ -1,4 +1,4 @@
-#include<raylib.h>
+#include"raylib.h"
 #include<vector>
 #include"cStructs.h"
 
@@ -45,6 +45,8 @@ int global_currentDif = 3; //add more monst, might change later
 //data structures 
 Vector2 global_theUser;
 
+
+
 struct room {
     bool init = false;
     int roomID;
@@ -52,6 +54,10 @@ struct room {
     bool hasPlayerVisted = false;
     std::vector<std::vector<Color>> backGroundOf;
     std::vector<monster> monsterNumber;
+    char torchColor = 'd'; //default
+    char floorType = 'd'; //default
+    char wallType = 'd'; //default
+
     int toLeft = -1;
     int toRight = -1;
     int toUP = -1;
@@ -74,3 +80,16 @@ enum Gamestate{
 };
 
 Gamestate state = MAIN_MENU;
+
+
+
+//Moved zacks loading stuff here
+const int FRAMES = 2;
+Texture2D frames[FRAMES];
+int currentFrame = 0;
+extern Texture2D frames[2];
+extern int currentFrame;
+
+
+Texture2D enemyFrames[2];
+const float frameSpeed = 0.2f;
